@@ -1,0 +1,27 @@
+clc
+close all hidden 
+f               = figure( 'NumberTitle' , 'Off' , 'Name' , 'Lidar Angle Illustration' )
+
+vec_angle       = @( a , b ) acosd( dot( a , b ) / ( norm( a ) * norm( b ) ) )  ;
+source.pos      = [ 1 0 ]                                                       ;
+target.pos      = [ -5 0 ]                                                      ;
+target.angle    = 135                                                           ;
+target.vec      = [ cosd( target.angle ) sind( target.angle ) ]                 ;
+target.slope    = target.vec( 2 ) / target.vec( 1 )                             ;
+target.theta    = atand( -target.slope )                            
+
+
+scatch.angle    = 180
+scratch.vec     = [ cosd( target.angle ) sind( target.angle ) ]                 ;
+scratch.bounds  = [ -0.5 0.5 ]                                                  ;
+
+h.out           = plot( [ source.pos( 1 ) target.pos( 1 ) ] , [ source.pos( 2 ) , target.pos( 2 ) ] , 'LineSmoothing' , 'on' )
+
+ret.angle       = 2 * target.theta                                  ;
+ret.vec         = [ cosd( ret.angle ) sind( ret.angle ) ] 
+
+scratch.angle   = acosd( dot( ret.vec , scratch.vec ) / ( norm( ret.vec , scratch.vec ) )
+
+
+grid on
+axis equal
