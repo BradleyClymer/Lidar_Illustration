@@ -1,0 +1,13 @@
+function obj_struct = find_class( class_name )
+    if nargin == 0
+        class_name  = 'reflectiveObject'            ;
+    end
+    w   = evalin( 'caller' , 'whos' )               ;
+    for i_vars = 1 : numel( w )
+        if strcmp( w( i_vars ).class , class_name )
+            obj_struct( i_vars )    = w( i_vars )   
+        end
+        
+    end
+    c
+end
